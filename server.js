@@ -50,10 +50,11 @@ app.post('/insert', (req, res)=> {
     })
 })
 
-app.get("/users", (req, res) => {
-    res.send({
-        bla: 1
-    })
+app.get("/users", async (req, res) => {
+    const query=`SELECT * FROM users`
+    const result =await  sequelize.query(query)
+    console.log(result)
+    res.send(result)
 })
 
 app.listen(PORT, function (err, res) {
