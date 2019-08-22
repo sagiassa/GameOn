@@ -9,7 +9,7 @@ class VisitorHome extends Component{
   render(){
       return(
           <div>
-          <div><NavbarVisitor /></div>
+          <div><NavbarVisitor AddUserToDB={this.props.AddUserToDB}/></div>
           </div>
       )
   }

@@ -48,7 +48,7 @@ class App extends Component{
   // }
   authListener = () =>{
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user)
+      // console.log(user)
       if(user){
         this.setState({user})
         this.props.store.handleInput(user.uid)
@@ -66,7 +66,11 @@ class App extends Component{
 
   getFromDB = async () => {
     let result = await axios.get('http://localhost:3030/users')
-    console.log(result)
+    // console.log(result)
+
+  }
+
+  addToDB = (obj) => {
 
   }
   render(){
@@ -74,7 +78,7 @@ class App extends Component{
     return (
       <Router>
         <div>
-        <div>{this.state.user ? (<UserHome store = {this.props.store} />) : (<VisitorHome />)}</div>
+        <div>{this.state.user ? (<UserHome store = {this.props.store} />) : (<VisitorHome AddUserToDB={this.AddUserToDB}/>)}</div>
         {/* <div>{this.state.user ? (<NavbarUser />) : (<NavbarVisitor />)}</div> */}
         {/* <div><Route path='/signup' exact render = {() => (this.state.user ? (<Home />) : (<Signup />))} /></div>
         <div className="App"><Route path='/user/home' exact render = {({match}) => <Registration AddUserToDB={this.AddUserToDB}/> } /> */}

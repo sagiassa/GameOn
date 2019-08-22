@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Login from './Login'
 // import Home from '../Home'
-import Signup from '../Log/Registration/Signup'
 import VisitorGames from './VisitorGames.js'
 import Signup from './Registration/Signup'
-import MyVisitor from './components/MyVisitor'
+// import MyVisitor from './components/MyVisitor'
 class NavbarVisitor extends Component{
   render() {
       return (
@@ -18,7 +17,7 @@ class NavbarVisitor extends Component{
                   </div>
                   <Route path="/VisitorGames" exact render={() => <VisitorGames />} />
                   <Route path="/Login" exact render={() => <Login />} />
-                  <Route path="/Signup" exact component={() => <Signup />} />
+                  <Route path="/Signup" exact component={() => <Signup AddUserToDB={this.props.AddUserToDB}/>} />
               </div>
           </Router>)}}
           

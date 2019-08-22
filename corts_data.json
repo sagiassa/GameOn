@@ -1,141 +1,141 @@
 [
     {
-      "adress": "bloch 62",
-      "type": "basketball",
       "city": "tel aviv",
-      "cort_name": "in the junk yard"
+      "address": "bloch 62",
+      "cort_name": "in the junk yard",
+      "cort_type": "basketball"
     },
     {
-        "adress": "Katznelson 92",
-        "type": "basketball",
-        "city": "tel aviv",
-        "cort_name": "infront of tlv mall"
+      "city": "tel aviv",
+      "address": "kendrik lamar 202",
+      "cort_name": "the hood",
+      "cort_type": "basketball"
     },
     {
-      "adress": "boobyBrown 55",
-      "type": "basketball",
       "city": "tel aviv",
-      "cort_name": "the coolest backyard"
+      "address": "boobyBrown 55",
+      "cort_name": "the coolest backyard",
+      "cort_type": "basketball"
     },
     {
-      "adress": "rabin street 45",
-      "type": "basketball",
       "city": "tel aviv",
-      "cort_name": "ben-tvi school"
+      "address": "rabin street 45",
+      "cort_name": "ben-tvi school",
+      "cort_type": "basketball"
   },
   {
-    "adress": "neverland st. 465",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "itziks garden"
+    "address": "neverland st. 465",
+    "cort_name": "itziks garden",
+    "cort_type": "basketball"
   },
   {
-    "adress": "lorenKing 65",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "right after the junk you turn left and then you will see a big field"
+    "address": "lorenKing 65",
+    "cort_name": "kingston",
+    "cort_type": "basketball"
   },
   {
-    "adress": "oren 12",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "ben-tvi school"
+    "address": "oren 12",
+    "cort_name": "Jquery",
+    "cort_type": "basketball"
   },
   {
-    "adress": "bat-shlome24",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "bat-shlome24",
+    "cort_name": "XML",
+    "cort_type": "basketball"
   },
   {
-    "adress":"son of mary 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "the coolest backyard"
+    "address":"son of mary 92",
+    "cort_name": "the coolest backyard",
+    "cort_type": "basketball"
   },
   {
-    "adress": "begin street 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "loren yard"
+    "address": "begin street 92",
+    "cort_name": "loren yard",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "tavot 16",
+    "cort_name": "the components",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "lilinblum 6a",
+    "cort_name": "handlebars",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "alenbi 1",
+    "cort_name": "NodeJs",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "shaham 6",
+    "cort_name": "OOP",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "jail road 101",
+    "cort_name": "The prison",
+    "cort_type": "basketball"
   }, {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "grid 1fr",
+    "cort_name": "Style Css",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "space Jam street",
+    "cort_name": "Basketball Jones",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "big3 16",
+    "cort_name": "The swish",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "the network 707",
+    "cort_name": "heruko",
+    "cort_type": "basketball"
   }, {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "the network 12",
+    "cort_name": "localhost3030",
+    "cort_type": "basketball"
   },
   {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "sequelize 17b",
+    "cort_name": "SQL",
+    "cort_type": "basketball"
   }, {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "mongoose 12",
+    "cort_name": "MongoDb",
+    "cort_type": "basketball"
   }, {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "101 Road",
+    "cort_name": "moment JS",
+    "cort_type": "basketball"
   }, {
-    "adress": "Katznelson 92",
-    "type": "basketball",
     "city": "tel aviv",
-    "cort_name": "infront of tlv mall"
+    "address": "Jupitor 1",
+    "cort_name": "the stars",
+    "cort_type": "basketball"
   }
 ]

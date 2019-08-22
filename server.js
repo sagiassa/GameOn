@@ -5,7 +5,7 @@ const app = express()
 const PORT = 3030
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize('mysql://root:@localhost:/sql_project')
-// const corts = require('./corts_data.json')
+const corts = require('./corts_data.json')
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,10 +16,10 @@ app.use(cors({
     origin: "*"
 }))
 
-const allowedTables = ["userfilter"];
+const allowedTables = ["users", "corts", "posts", "posts_count", "user_filters", "users"];
 
 // for( let i of corts){
-//     const query = `INSERT INTO game_corts VALUES(null, '${i.type}', '${i.city}', '${i.cort_name}', '${i.adress}')`
+//     const query = `INSERT INTO corts VALUES(null, '${i.city}', '${i.address}', '${i.cort_name}', '${i.cort_type}')`
 //     sequelize.query(query)
 // }
 
@@ -30,7 +30,6 @@ app.post('/insert', (req, res)=> {
         return;
     }
     const temp = {
-        id: 1,
         ...req.body.fields
     };
     
@@ -43,6 +42,7 @@ app.post('/insert', (req, res)=> {
     sequelize.query(query, {
         replacements: temp
     }).then(() => {
+        console.log("added to db")
         res.send({})
     }, (error) => {
         console.error(error)

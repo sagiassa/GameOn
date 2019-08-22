@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import fire from '../../../config/Fire'
 class Signup extends Component {
   constructor() {
@@ -7,12 +6,12 @@ class Signup extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      gender : 'M',
+      gender: 'M',
       phoneNumber: '',
       email: '',
       userName: '',
       password: '',
-      flag : 'false',
+      uid: '',
       signedUp: false
     }
   }
@@ -20,33 +19,44 @@ class Signup extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   dosomthings = async (e) => {
-    // this.addToDB()
-    await this.signup(e)
-    if (this.state.signedup){
-    alert('you have successfuly signed up!')
-    window.location.href = 'http://localhost:3000/Home'
+    let result = await this.signup(e)
+    await this.addToDB()
+    if (this.state.signedup) {
+      alert('you have successfuly signed up!')
+    }
   }
 
-  }
-  addToDB = () => {
-
-    console.log(this.state)
+  addToDB = async () => {
+    let obj = await {
+      fields: {
+        first_name: this.state.firstName,
+        last_name: this.state.lastName,
+        gender: this.state.gender,
+        email: this.state.email,
+        phone_number: this.state.phoneNumber,
+        username: this.state.userName,
+        password: this.state.password,
+        uid: this.state.uid
+      },
+      entity: "users"
+    }
+    console.log(obj)
+    this.props.AddUserToDB(obj)
   }
   signup = async (e) => {
-    console.log(e)
-    console.log("we can do it")
-    this.setState({signedUp: true})
+    this.setState({ signedUp: true })
     e.preventDefault();
     try {
-      const user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-      console.log(await user.user.getIdToken(true))
-      window.location.href = 'http://localhost:3000/Home'
+      await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        this.setState({ uid: u.user.uid })
+      })
+      
     } catch (error) {
       console.error(error);
       alert('cant sign up')
-      this.setState({signedUp: false})
+      this.setState({ signedUp: false })
     }
-    //insert into database
+
   }
   render() {
     return (

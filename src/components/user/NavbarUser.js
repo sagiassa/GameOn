@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Logout from './Logout'
-import Home from '../Home'
-import MyProfile from './components/myProfile/MyProfile'
-import NewGame from './components/NewGame'
-// import MyProfile from './MyProfile'
+import MyProfile from './myProfile/MyProfile'
 import UserGames from './UserGames'
 import PostNewGame from './PostNewGame';
+
+
+
+// import MyProfile from './MyProfile'
+// import Logout from './Logout'
+// import Home from '../Home'
 class NavbarUser extends Component{
     render() {
         return (
