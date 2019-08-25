@@ -9,3 +9,18 @@
   color: rgb(33, 24, 165);
   font-weight: bold;
 }
+#posts {
+  margin-top: 20px;
+  background: navy;
+  width: 60%;
+  margin-left: 30px;
+  color : whitesmoke;
+  padding: 20px;
+  
+}
+#eachpost{
+  background: blue;
+  padding: 20px;
+
+
+}

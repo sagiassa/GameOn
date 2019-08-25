@@ -10,14 +10,14 @@ class NavbarVisitor extends Component{
       return (
           <Router>
               <div>
-                  <div class="navbar">
-                      <Link to='/Login'><div class="navbarList">Login</div></Link>
+                  <div class="Vnavbar">
                       <Link to='/VisitorGames'><div class="navbarList">Games</div></Link>
-                      <Link to='/Signup'><div class="navbarList">Signup</div></Link>
+                      <Link to='/Login'><div class="navbarList">Login</div></Link>
+                      <Link to='/Signup'><div class="navbarList">Register</div></Link>
                   </div>
-                  <Route path="/VisitorGames" exact render={() => <VisitorGames />} />
+                  <Route path="/" exact render={() => <VisitorGames renderMyData = {this.props.renderMyData}/>} />
                   <Route path="/Login" exact render={() => <Login />} />
-                  <Route path="/Signup" exact component={() => <Signup AddUserToDB={this.props.AddUserToDB}/>} />
+                  <Route path="/Signup" exact component={() => <Signup AddToDB={this.props.AddToDB}/>} />
               </div>
           </Router>)}}
           

@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 const moment = require('moment');
 class NewGame extends Component {
     constructor() {
         super()
         this.state = {
-            fields: {
                 city: "",
-                field: "",
+                court: "",
                 time: "",
                 day: "",
-                numbersOfPlayers: ""
-            },
-            entity: "posts"
-        }
+                numOfPlayers: ""
+            }     
     }
     sevenDaysDates = () => {
         let days = []
@@ -54,61 +51,71 @@ class NewGame extends Component {
     // }
 
     handleChangeNewGame = async (event) => {
-        if (event.target.name === 'sumPlayers') {
-            if (event.target.value > 30) {
+        console.log(this.state)
+        if (event.target.name === 'sumPlayers' && event.target.value > 30 ) {
                 return alert("A Game Can Only Have Max Of 30 Player! ")
             }
-            else {
-                this.setState({ [event.target.name]: event.target.value })
-            }
-        }
-        await this.setState({ [event.target.name]: event.target.value }, function () {
-        })
+        await this.setState({ [event.target.name]: event.target.value }  ) 
+            console.log(this.state)
     }
-    postNewGame = () => {
-        // let obj = {
-        //     city: this.state.city,
-        //     field: this.state.field,
-        //     day: this.state.day,
-        //     time: this.state.time,
-        //     numbersOfPlayers: this.state.numbersOfPlayers
-        // }
-        console.log(this.state)
-        this.props.postNewGame(this.state)
+    postNewGame =async () => {
+        let post = await {
+            fields : {
+                // sport : this.state.sport,
+                // gender: this.state.gender,
+                // age: this.state.age,
+                // level: this.state.level,
+                city: this.state.city,
+                cort_name: this.state.court,
+                time: this.state.time,
+                day: this.state.day,
+                numOfPlayers: this.state.numOfPlayers
+            },
+        entity : 'posts'
+        }
+        console.log(post)
+        this.props.addToDB(post)
     }
     render() {
         // let cityNames = this.selectCity()
         // let fieldsNames = this.selectField()
-        // let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+       const players = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
         return (
-            <div>
-                <div>Post Your Game:</div>
+            <div className="postYourGame">
+                <h1>Post Your Game</h1>
+                <p> the sport, gender, age, level should be default from the user's personal data</p>
                 <div>City:</div>
-                <input type='text' className="in" list='CitiesNames' name='city' value={this.state.city} onChange={this.handleChangeNewGame} />
-                <div><datalist id='CitiesNames'>
+                    <input type='text' className="in" list='CitiesNames' name='city' value={this.state.city} onChange={this.handleChangeNewGame} />
+                    <div><datalist id='CitiesNames'>
                     {/* {cityNames.map(x => <option value={x} />)} */}
-                </datalist></div>
+                    </datalist></div>
 
-                <div>Field:</div>
-                <input type='text' className="in" list='fieldsNames' name='field' value={this.state.field} onChange={this.handleChangeNewGame} />
-                <div><datalist id='fieldsNames'>
+                <div>Court:</div>
+                    <input type='text' className="in" list='courtNames' name='court' value={this.state.field} onChange={this.handleChangeNewGame} />
+                    <div><datalist id='courtNames'>
                     {/* {fieldsNames.map(x => <option value={x} />)} */}
-                </datalist></div>
+                    </datalist></div>
 
                 <div>Day:</div>
-                <div><input id="calender" type="text" list="dates" name="sagias" onChange={this.handleChangeNewGame} />
+                    <div><input id="calender" type="text" list="dates" name="day" onChange={this.handleChangeNewGame} />
                     <datalist id="dates">
                         {this.sevenDaysDates().map(m => <option value={m} key={m} />)}
                     </datalist></div>
+                
                 <div>Time:</div>
-                <div>
-                    <input type="time" id="appt" name="appt" min="09:00" max="22:00" />
-                </div>
+                    <div>
+                    <input type="time"  id="appt" name="time" min="09:00" max="22:00" onChange={this.handleChangeNewGame}/>
+                    </div>
+                
                 <div>Number Of Players:</div>
-                <div><input placeholder="Number Of Players" type="number" name='numberOfPlayers' value={this.state.numberOfPlayers} min='1' onChange={this.handleChangeNewGame}></input></div>
-                <div>
+                    <div><input list="players" name='numOfPlayers' value={this.state.numOfPlayers} min='4' max='30'onChange={this.handleChangeNewGame}/>
+                    <datalist id="players">
+                        {players.map(n => <option>{n}</option>)}
+                    </datalist></div>
+                
+                
                     <button onClick={this.postNewGame}> Create New Game! </button>
-                </div>
+                
             </div>
         )
     }

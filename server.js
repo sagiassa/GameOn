@@ -5,7 +5,7 @@ const app = express()
 const PORT = 3030
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize('mysql://root:@localhost:/sql_project')
-const corts = require('./corts_data.json')
+const courts = require('./courts_data.json')
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -52,6 +52,12 @@ app.post('/insert', (req, res)=> {
 
 app.get("/users", async (req, res) => {
     const query=`SELECT * FROM users`
+    const result =await  sequelize.query(query)
+    console.log(result)
+    res.send(result)
+})
+app.get("/posts", async (req, res) => {
+    const query=`SELECT * FROM posts`
     const result =await  sequelize.query(query)
     console.log(result)
     res.send(result)

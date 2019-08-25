@@ -5,39 +5,40 @@ import axios from 'axios'
 import firebase from './config/Fire.js'
 import UserHome from './components/user/UserHome'
 import VisitorHome from './components/visitor/VisitorHome'
-import {inject} from 'mobx-react'
+// import {inject} from 'mobx-react'
+import { observer} from 'mobx-react'
 
-// import NavbarVisitor from './components/visitor/NavbarVisitor'
-// import NavbarUser from './components/user/NavbarUser'
-// import Registration from './components/visitor/Registration/RegistrationFilters'
-// import Signup from './components/Log/Registration/Signup';
-// import Home from './components/Home'
-// import SuccessfulySignedUp from './components/successfulySignedUp';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// injectTapEventPlugin();
 
-@inject('store')
+
+@observer
 class App extends Component{
   constructor(){
     super()
     this.state = {
       user: {},
-      games: []
+      posts: []
     }
   }
   componentDidMount(){
     this.authListener()
     // this.rendeMyData()
   }
-  // rendeMyData=async()=>{
-  //   const data = await axios.get('http://localhost:8080/games')
-  //   this.setState({games: data.data}, function(){
-  //   // console.log(this.state.games)
-  //   })
-  // } 
-  // postNewGame=async(newGameEvent)=>{
-  //   console.log(newGameEvent)
-  //   await axios.post('http://localhost:8080/newgame', newGameEvent)
-  //   this.rendeMyData()
-  // }
+  renderMyData = async () => {
+    const data = await axios.get('http://localhost:3030/posts')
+    return data.data[0]
+
+  } 
+  renderMyUsers = async () => {
+    const data = await axios.get('http://localhost:3030/users')
+    return data.data[0]
+  }
+  postNewGame=async(newGame)=>{
+    console.log(newGame)
+    await axios.post('http://localhost:3030/posts', newGame)
+    this.rendeMyData()
+  }
   // MyVisitorSearch=async(searchObj)=>{
   //   console.log(searchObj)
   //   await axios.put(`http://localhost:8080/vistorsearch`, searchObj)
@@ -59,7 +60,7 @@ class App extends Component{
     })
   }
 
-  AddUserToDB = async (obj) => {
+  AddToDB = async (obj) => {
     await axios.post('http://localhost:3030/insert', obj)
     console.log("it worked") 
   }
@@ -67,24 +68,24 @@ class App extends Component{
   getFromDB = async () => {
     let result = await axios.get('http://localhost:3030/users')
     // console.log(result)
-
   }
 
-  addToDB = (obj) => {
-
-  }
   render(){
     this.getFromDB()
+    console.log(this.props.store)
     return (
+      <MuiThemeProvider>
       <Router>
         <div>
-        <div>{this.state.user ? (<UserHome store = {this.props.store} />) : (<VisitorHome AddUserToDB={this.AddUserToDB}/>)}</div>
+        <div>{this.state.user ? (<UserHome store = {this.props.store}  AddToDB={this.AddToDB} renderMyData = {this.renderMyData}/> )
+                                 : (<VisitorHome AddToDB={this.AddToDB} renderMyData = {this.renderMyData}/>)}</div>
         {/* <div>{this.state.user ? (<NavbarUser />) : (<NavbarVisitor />)}</div> */}
         {/* <div><Route path='/signup' exact render = {() => (this.state.user ? (<Home />) : (<Signup />))} /></div>
         <div className="App"><Route path='/user/home' exact render = {({match}) => <Registration AddUserToDB={this.AddUserToDB}/> } /> */}
       {/* </div> */}
       </div>
       </Router>
+      </MuiThemeProvider>
     )
   }
 }

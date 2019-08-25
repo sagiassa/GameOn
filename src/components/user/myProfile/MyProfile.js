@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+// import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import PopEdit from './PopEdit';
 import PopUpFutureGames from './PopUpMyFutureGames';
 import PopMyFriends from './PopMyFriends';
-import firebase from '../../../config/Fire.js'
+
 class MyProfile extends Component {
     constructor(){
         super()
@@ -13,10 +13,7 @@ class MyProfile extends Component {
           PopMyFriends: false
         }
     }
-    logout = () => {
-      firebase.auth().signOut();
-      alert('Logged out')
-  }
+
     jumpPopUpEdit=()=>{
       this.setState({ popUpEdit: !this.state.popUpEdit}, function(){
         console.log(this.state.popUpEdit)
@@ -45,10 +42,10 @@ class MyProfile extends Component {
             <li className ="NavBarChildProfile" onClick={this.jumpPopUpEdit}><i class="fas fa-basketball-ball"></i>Edit Profile</li>
             <li className ="NavBarChildProfile" onClick={this.jumpPopUpFutureGames}><i class="fas fa-basketball-ball"></i>My Future Games</li>
             <li className ="NavBarChildProfile" onClick={this.jumpPopUpMyFriends}><i class="fas fa-basketball-ball"></i>My Friends</li>
+            
           </ul>
         </div>
         <div>
-          <button onClick = {this.logout}>Logout</button>
           </div>
        </div>
         )

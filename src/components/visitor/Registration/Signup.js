@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import fire from '../../../config/Fire'
+import { Redirect } from 'react-router-dom'
+import UserGames from '../../user/UserGames'
 class Signup extends Component {
   constructor() {
     super()
     this.state = {
       firstName: '',
       lastName: '',
-      gender: 'M',
+      gender: '',
       phoneNumber: '',
       email: '',
       userName: '',
@@ -17,6 +22,8 @@ class Signup extends Component {
   }
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state.phoneNumber)
+    console.log(this.state.gender)
   }
   dosomthings = async (e) => {
     let result = await this.signup(e)
@@ -38,19 +45,20 @@ class Signup extends Component {
         password: this.state.password,
         uid: this.state.uid
       },
-      entity: "users"
+      entity: "users",
     }
     console.log(obj)
-    this.props.AddUserToDB(obj)
+    this.props.AddToDB(obj)
   }
   signup = async (e) => {
-    this.setState({ signedUp: true })
     e.preventDefault();
     try {
       await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
         this.setState({ uid: u.user.uid })
+        this.setState({ signedUp: true })
+        localStorage.setItem("user", u.user.uid)
       })
-      
+
     } catch (error) {
       console.error(error);
       alert('cant sign up')
@@ -59,50 +67,84 @@ class Signup extends Component {
 
   }
   render() {
+    const styles = { customWidth: { width: 150 } }
     return (
       <div>
         <form class="signup-form">
           <div>
-            <input value={this.state.firstName} onChange={this.handleChange}
-              type="text" name="firstName" class="form-control"
-              id="exampleInputFirstName" placeholder="First name" />
+            <TextField
+              name="firstName"
+              hintText="First Name"
+              value={this.state.firstName} onChange={this.handleChange}
+              floatingLabelText="First Name"
+            />
           </div>
           <div>
-            <input value={this.state.lastName} onChange={this.handleChange}
-              type="text" name="lastName" class="form-control"
-              id="exampleInputLastName" placeholder="Last name" />
+            <TextField
+              name="lastName"
+              hintText="Last Name"
+              value={this.state.lastName} onChange={this.handleChange}
+              floatingLabelText="Last Name"
+            />
           </div>
           <div>
-            <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+            <SelectField
+              floatingLabelText="Gender"
+              name="gender"
+              // value={this.state.gender}
+              onChange={this.handleChange}
+              style={styles.customWidth}
+            >
+              <MenuItem value={1} primaryText="M" />
+              <MenuItem value={2} primaryText="F" />
+            </SelectField>
+          </div>
+
+          <div>
+            {/* <select name="gender" value={this.state.gender} onChange={this.handleChange}>
               <option value="M"> M </option>
               <option value='F'> F </option>
-            </select>
+            </select> */}
           </div>
           <div>
-            <input value={this.state.phoneNumber} onChange={this.handleChange}
-              type="phoneNumber" name="phoneNumber" class="form-control"
-              id="exampleInputPhoneNumber" placeholder="Phone number" />
+            <TextField
+              name="phoneNumber"
+              hintText="example 0540097845"
+              value={this.state.phoneNumber} onChange={this.handleChange}
+              floatingLabelText="Phone Number"
+            />
           </div>
           <div>
-            <input value={this.state.email} onChange={this.handleChange}
-              type="email" name="email" class="form-control"
-              id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <TextField
+              name="email"
+              type="email"
+              hintText="name@address.com"
+              value={this.state.email} onChange={this.handleChange}
+              floatingLabelText="Email"
+            />
           </div>
           <div>
-            <input value={this.state.userName} onChange={this.handleChange}
-              type="username" name="userName" class="form-control"
-              id="exampleInputUsername" placeholder="Username" />
+            <TextField
+              name="userName"
+              hintText="best baller"
+              value={this.state.userName} onChange={this.handleChange}
+              floatingLabelText="Username"
+            />
           </div>
           <div>
-            <input value={this.state.password} onChange={this.handleChange}
-              type="password" name="password" class="form-control"
-              id="exampleInputPassword1" placeholder="Password" />
+            <TextField
+              name="password"
+              type="password"
+              hintText=""
+              value={this.state.password} onChange={this.handleChange}
+              floatingLabelText="Password"
+            />
           </div>
         </form>
         <div>
           <button onClick={this.dosomthings} className="btn btn-success">Signup</button>
         </div>
-        {/* {this.state.flag ?  <Redirect to="/Home"/> : <Signup/>} */}
+        {/* {this.state.signedUp ?  <UserGames user={this.state}/> : <Signup/>} */}
       </div>
     )
   }
