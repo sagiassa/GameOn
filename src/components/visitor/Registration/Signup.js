@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import fire from '../../../config/Fire'
-import { Redirect } from 'react-router-dom'
-import UserGames from '../../user/UserGames'
+
 class Signup extends Component {
   constructor() {
     super()
     this.state = {
       firstName: '',
       lastName: '',
-      gender: '',
+      gender: 'M',
       phoneNumber: '',
       email: '',
       userName: '',
@@ -20,13 +17,12 @@ class Signup extends Component {
       signedUp: false
     }
   }
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.phoneNumber)
-    console.log(this.state.gender)
+  handleChange = async (e) => {
+    await this.setState({ [e.target.name]: e.target.value })
+    console.log(this.state)
   }
   dosomthings = async (e) => {
-    let result = await this.signup(e)
+    await this.signup(e)
     await this.addToDB()
     if (this.state.signedup) {
       alert('you have successfuly signed up!')
@@ -47,7 +43,6 @@ class Signup extends Component {
       },
       entity: "users",
     }
-    console.log(obj)
     this.props.AddToDB(obj)
   }
   signup = async (e) => {
@@ -87,24 +82,24 @@ class Signup extends Component {
               floatingLabelText="Last Name"
             />
           </div>
-          <div>
+          {/* <div>
             <SelectField
               floatingLabelText="Gender"
               name="gender"
-              // value={this.state.gender}
               onChange={this.handleChange}
               style={styles.customWidth}
+              value={this.state.gender}
             >
-              <MenuItem value={1} primaryText="M" />
-              <MenuItem value={2} primaryText="F" />
+              <MenuItem value={'M'} primaryText="M" />
+              <MenuItem value={'F'} primaryText="F" />
             </SelectField>
-          </div>
-
+          </div> */}
+          <br></br>
           <div>
-            {/* <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+            <select name="gender" value={this.state.gender} onChange={this.handleChange}>
               <option value="M"> M </option>
               <option value='F'> F </option>
-            </select> */}
+            </select>
           </div>
           <div>
             <TextField

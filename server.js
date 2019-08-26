@@ -18,12 +18,10 @@ app.use(cors({
 
 const allowedTables = ["users", "corts", "posts", "posts_count", "user_filters", "users"];
 
-// for( let i of corts){
-//     const query = `INSERT INTO corts VALUES(null, '${i.city}', '${i.address}', '${i.cort_name}', '${i.cort_type}')`
-//     sequelize.query(query)
-// }
 
 app.post('/insert', (req, res)=> {
+    console.log(req.body.entity)
+    
     if (!allowedTables.includes(req.body.entity)) {
         res.status(400).json({
         })
@@ -37,8 +35,6 @@ app.post('/insert', (req, res)=> {
     `INSERT INTO ${req.body.entity}
     (${Object.keys(temp).join(",")})
     VALUES(:${Object.keys(temp).join(", :")})`
-    //values(?,?) if i want to do the same with array
-    // https://sequelize.org/master/manual/raw-queries.html#replacements
     sequelize.query(query, {
         replacements: temp
     }).then(() => {
@@ -62,6 +58,18 @@ app.get("/posts", async (req, res) => {
     console.log(result)
     res.send(result)
 })
+app.get("/user_filters", async (req, res) => {
+    const query=`SELECT * FROM user_filters`
+    const result =await  sequelize.query(query)
+    console.log(result)
+    res.send(result)
+})
+app.put('/updates', async (req, res) => {
+    console.log("in server")
+    console.log(req.body)
+    const query1 = `UPDATE user_filters SET age='${req.body.age}', level='${req.body.level}' WHERE u_id = '${req.body.u_id}' AND sport = 'basketball' `
+    sequelize.query(query1)
+})
 
 app.listen(PORT, function (err, res) {
     console.group("the server runs on port " + PORT)
@@ -73,3 +81,10 @@ app.listen(PORT, function (err, res) {
 // `INSERT INTO usersfilters
 //  VALUES(1, '${req.body.gender}','${req.body.age}',' ${req.body.sport}',
 //             '${req.body.level}') `
+
+//values(?,?) if i want to do the same with array
+// https://sequelize.org/master/manual/raw-queries.html#replacements
+
+// for( let i of corts){
+//     const query = `INSERT INTO corts VALUES(null, '${i.city}', '${i.address}', '${i.cort_name}', '${i.cort_type}')`
+//     sequelize.query(query) }

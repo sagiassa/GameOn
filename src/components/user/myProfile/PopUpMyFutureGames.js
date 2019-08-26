@@ -11,7 +11,7 @@ class PopUpFutureGames extends Component {
     
       return(
       <div className="pop">
-        sagi ein po clom tembel
+        
        </div>
         )
     }   

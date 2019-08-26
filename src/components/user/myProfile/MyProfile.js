@@ -34,7 +34,7 @@ class MyProfile extends Component {
       return(
       <div>
       
-      <div>{this.state.popUpEdit ? <PopEdit data={this.props.data} PopEditSearch={this.props.PopEditSearch}/> : null  }</div>
+      <div>{this.state.popUpEdit ? <PopEdit updateUser={this.props.updateUser} renderMyData={this.props.renderMyData} PopEditSearch={this.props.PopEditSearch}/> : null  }</div>
       <div>{this.state.popUpFutureGames ? <PopUpFutureGames  data={this.props.data}/> : null}</div>
       <div>{this.state.PopMyFriends ? <PopMyFriends  data={this.props.data}/> : null}</div>
         <div className="NavBarMyProfile">

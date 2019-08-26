@@ -6,26 +6,43 @@ class UserGames extends Component{
        super(props)
        this.state = {
            posts : [],
-           data : []
+           filters : [],
+           uid : ''
        }
    }
    componentWillMount = async () => {
-    let posts = await  this.props.renderMyData()
+    let id = localStorage.getItem("user")
+    this.setState( { uid : id } )
+    let posts = await this.props.renderMyData() //this function takes all the posts from db
     await this.setState({posts})
-    this.renderMyUsers()
+    this.renderMyUserFilters()
 }
-renderMyUsers = async () => {
-    const data = await axios.get('http://localhost:3030/users')
-    this.setState( {data : data.data[0]} )
+renderMyUserFilters = async () => {
+    const data = await axios.get('http://localhost:3030/user_filters')
+    let filters = data.data[0].filter(u => u.u_id === this.state.uid)
+    await this.setState( {filters : filters[0]} )
+    console.log(this.state.filters)
+
   }
    render(){
-       let id = localStorage.getItem("user")
-       console.log(id)
-       console.log(this.state.data)
+       let age = this.state.filters.age
+       let sport = this.state.filters.sport
+       let level = this.state.filters.level
+       
        return(
            <div>
-               
-           {this.state.posts.map(p => p.city)}
+            {this.state.posts.map(p => p.age === age && p.sport === sport && p.level === level ?
+            <div id = "posts">
+                <div id="eachpost">
+                <span> {p.sport} </span>
+                <span> {p.level} </span> 
+                <span> {p.day} </span> 
+                <span> {p.age} </span> 
+                <span> {p.TIME} </span> 
+                <span> {p.city} </span>
+                <span> {p.court_name} </span>
+                <span> {p.numOfPlayers} </span> </div>
+            </div> : null )}
            </div>
        )
    }

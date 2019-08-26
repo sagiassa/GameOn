@@ -10,16 +10,17 @@ class VisitorGames extends Component{
        this.state= {
            posts: [],
            sport : 'basketball',
-           city : 'tel-aviv',
-           age : '11-15',
-           level : 'bad',
+           city : '',
+           age : '',
+           level : '',
            flag : false,
            filteredPosts : ''
        }
    }
    componentWillMount = async () => {
-       let posts = await  this.props.renderMyData()
-       await this.setState({posts})
+       console.log("start")
+       let posts = await this.props.renderMyData()
+       this.setState({posts})
    }
    cityNames = () => {
        let cities = this.state.posts.map(c => c.city)
@@ -40,7 +41,6 @@ class VisitorGames extends Component{
        let name = e.target.name
        let value = e.target.value
        await this.setState({ [name] : value })
-       console.log(this.state)
        this.filterPosts()
    }
    filterPosts = async () => {
@@ -49,7 +49,6 @@ class VisitorGames extends Component{
                                                     p.city === this.state.city &&
                                                     p.level === this.state.level &&
                                                     p.age === this.state.age )
-        console.log(filteredPosts)
         if( filteredPosts.length > 0){
             this.setState( { flag : true , filteredPosts : filteredPosts })
         }  
@@ -57,7 +56,6 @@ class VisitorGames extends Component{
             this.setState ( { flag : false })
         }                       
    }
-
    render(){
        const cities = this.cityNames()
        const age = this.ageRange()
@@ -101,9 +99,9 @@ class VisitorGames extends Component{
                 <span> {p.sport} </span>
                 <span> {p.level} </span> 
                 <span> {p.day} </span> 
+                <span> {p.age} </span> 
                 <span> {p.city} </span>
-                <span> {p.cort_name} </span>
-                <span> {p.address} </span> 
+                <span> {p.court_name} </span>
                 <span> {p.numOfPlayers} </span> </div>
             </div> )}
             </div>

@@ -13,7 +13,7 @@ class UserHome extends Component{
   render(){
       return(
           <div>
-          <div><NavbarUser store = {this.props.store} addToDB={this.props.AddToDB} renderMyData = {this.props.renderMyData}/></div>
+          <div><NavbarUser updateUser={this.props.updateUser} addToDB={this.props.AddToDB} renderMyData = {this.props.renderMyData}/></div>
           </div>
       )
   }

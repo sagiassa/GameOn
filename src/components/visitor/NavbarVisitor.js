@@ -15,7 +15,7 @@ class NavbarVisitor extends Component{
                       <Link to='/Login'><div class="navbarList">Login</div></Link>
                       <Link to='/Signup'><div class="navbarList">Register</div></Link>
                   </div>
-                  <Route path="/" exact render={() => <VisitorGames renderMyData = {this.props.renderMyData}/>} />
+                  <Route path="/VisitorGames" exact render={() => <VisitorGames renderMyData = {this.props.renderMyData}/>} />
                   <Route path="/Login" exact render={() => <Login />} />
                   <Route path="/Signup" exact component={() => <Signup AddToDB={this.props.AddToDB}/>} />
               </div>

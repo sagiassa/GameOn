@@ -26,6 +26,7 @@ class App extends Component{
     // this.rendeMyData()
   }
   renderMyData = async () => {
+    console.log("hey")
     const data = await axios.get('http://localhost:3030/posts')
     return data.data[0]
 
@@ -61,15 +62,17 @@ class App extends Component{
   }
 
   AddToDB = async (obj) => {
+    console.log("hey")
     await axios.post('http://localhost:3030/insert', obj)
     console.log("it worked") 
   }
 
   getFromDB = async () => {
     let result = await axios.get('http://localhost:3030/users')
-    // console.log(result)
   }
-
+  updateUser = async (obj) => {
+    await axios.put('http://localhost:3030/updates', obj)
+  }
   render(){
     this.getFromDB()
     console.log(this.props.store)
@@ -77,7 +80,7 @@ class App extends Component{
       <MuiThemeProvider>
       <Router>
         <div>
-        <div>{this.state.user ? (<UserHome store = {this.props.store}  AddToDB={this.AddToDB} renderMyData = {this.renderMyData}/> )
+        <div>{this.state.user ? (<UserHome  updateUser={this.updateUser} AddToDB={this.AddToDB} renderMyData = {this.renderMyData}/> )
                                  : (<VisitorHome AddToDB={this.AddToDB} renderMyData = {this.renderMyData}/>)}</div>
         {/* <div>{this.state.user ? (<NavbarUser />) : (<NavbarVisitor />)}</div> */}
         {/* <div><Route path='/signup' exact render = {() => (this.state.user ? (<Home />) : (<Signup />))} /></div>
