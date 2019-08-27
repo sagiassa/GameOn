@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-
+import { Message } from 'semantic-ui-react'
 class visitorSortGames extends Component {
         constructor(){
             super()
@@ -12,17 +12,21 @@ class visitorSortGames extends Component {
         return (
             <div>
                 {posts.map(p => <div id = "posts">
-                <div id="eachpost">
-                <span> {p.sport} </span>
-                <span> {p.level} </span> 
-                <span> {p.day} </span> 
-                <span> {p.city} </span>
-                <span> {p.cort_name} </span>
-                <span> {p.address} </span> 
-                <span> {p.numOfPlayers} </span> </div>
-            </div>)}
+                    
+                <Message id="post" color='teal' size='mini'>
+            <div className="containerPost">
+                <div className="g1"><div className="headerGame"> Sport:</div> {p.sport} </div>
+                <div className="g1"><div className="headerGame"> Level:</div> {p.level} </div>
+                <div className="g1"><div className="headerGame"> day:</div> {p.day} </div>
+                <div className="g1"><div className="headerGame"> Age:</div> {p.age} </div>
+                <div className="g1"><div className="headerGame">City:</div> {p.city} </div>
+                <div className="g1"><div className="headerGame">Court:</div> {p.court_name} </div>
+                <div className="g1"><div className="headerGame"> numbers:</div> {p.numOfPlayers} </div>
             </div>
-            // <h1> the games will b here</h1>
+        </Message>  </div>)}
+        
+            </div>
+           
         )
     }
 }

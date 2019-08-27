@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 body{
- background-color: rgb(255,253,208);
+ /* background-color: rgb(255,253,208); */
 }
 .navbar {
  display: grid;
@@ -91,21 +91,7 @@ width: 40x;
 .sideBar .NavBarChildProfile:hover {
 background-color: #594f8d;
 }
-.pop{
-position: absolute;
-/* background-image: url('https://us.123rf.com/450wm/darksoul72/darksoul721811/darksoul72181100165/111612131-texture-of-the-night-sky-star-abstraction-on-a-black-background.jpg?ver=6'); */
-text-align: left;
-background-color: rgb(255,253,208);
-justify-content: center;
-height: 200px;
-width: 178vh;
-margin-left: 14.5%;
-margin-top: 0%;
-/* border: 5px solid gray; */
-font-family: 'Josefin Sans', sans-serif;
-color:black;
-font-size: 40px;
-}
+
 .popEditChild{
 display: inline-block;
 padding-right: 0px;
@@ -139,3 +125,22 @@ to {
   transform: rotate(360deg);
 }
 }
+.pop{
+  position: absolute;
+  margin-left: 18%;
+  margin-top: 6%;
+  width:600px;
+
+  }
+  .inputP{
+    font-size: 14px;
+   }
+   .headerP{
+    padding: 17px;
+    font-size: 35px;
+    color:red;
+   }
+   .headerp1{
+    font-size: 17px;
+    color: black;
+   }

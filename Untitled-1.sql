@@ -1,6 +1,18 @@
 use sql_project;
-
-
+-- DELETE FROM mygames;
+-- CREATE TABLE mygames (
+--     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+--     u_id TEXT,
+--     post_id INT
+-- );
+-- DELETE FROM myfriends;
+-- INSERT INTO myfriends VALUES('uHVbTsik9zZQsAPtxRH6O5ncwJv2','top player ever');
+-- CREATE TABLE MyFriends (
+--     u_id TEXT,
+--     friend_username TEXT
+-- );
+-- DELETE FROM user_filters
+-- WHERE u_id = 'qqREYrFU63NO5o6Tp6LZgGuEqUR2';
 -- DROP TABLE user_filters;
 -- CREATE TABLE user_filters (
 --     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -21,19 +33,19 @@ use sql_project;
 --         uid TEXT
 -- );
 -- DROP TABLE posts_count;
-DROP TABLE posts;
-CREATE TABLE posts ( 
-    post_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    sport TEXT,
-    gender VARCHAR(1),
-    age VARCHAR(5),
-    level TEXT,
-    day TEXT,
-    TIME TEXT,
-    city TEXT,
-    court_name TEXT,
-    numOfPlayers INT
-);
+-- DROP TABLE posts;
+-- CREATE TABLE posts ( 
+--     post_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+--     sport TEXT,
+--     gender VARCHAR(1),
+--     age VARCHAR(5),
+--     level TEXT,
+--     day TEXT,
+--     TIME TEXT,
+--     city TEXT,
+--     court_name TEXT,
+--     numOfPlayers INT
+-- );
 
 -- CREATE TABLE posts_count (
 --     posts_id INT,

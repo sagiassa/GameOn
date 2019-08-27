@@ -103,7 +103,6 @@ class NewGame extends Component {
             },
             entity: 'posts'
         }
-        console.log(post)
         this.props.addToDB(post)
     }
     render() {

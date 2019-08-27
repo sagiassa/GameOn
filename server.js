@@ -16,11 +16,10 @@ app.use(cors({
     origin: "*"
 }))
 
-const allowedTables = ["users", "corts", "posts", "posts_count", "user_filters", "users"];
+const allowedTables = ["users", "posts", "user_filters", "myfriends", "mygames"];
 
 
 app.post('/insert', (req, res)=> {
-    console.log(req.body.entity)
     
     if (!allowedTables.includes(req.body.entity)) {
         res.status(400).json({
@@ -45,34 +44,56 @@ app.post('/insert', (req, res)=> {
         res.status(400).json(error);
     })
 })
-
+app.get('/myfriends', async (req, res)=>{
+    const query = `SELECT * FROM myfriends `
+    const result = await sequelize.query(query)
+    console.log(result)
+    res.send(result)
+})
 app.get("/users", async (req, res) => {
     const query=`SELECT * FROM users`
     const result =await  sequelize.query(query)
-    console.log(result)
+    res.send(result)
+})
+app.get("/mygames", async (req, res) => {
+    const query=`SELECT * FROM mygames`
+    const result =await  sequelize.query(query)
     res.send(result)
 })
 app.get("/posts", async (req, res) => {
     const query=`SELECT * FROM posts`
     const result =await  sequelize.query(query)
-    console.log(result)
     res.send(result)
 })
 app.get("/user_filters", async (req, res) => {
     const query=`SELECT * FROM user_filters`
     const result =await  sequelize.query(query)
-    console.log(result)
     res.send(result)
 })
 app.put('/updates', async (req, res) => {
-    console.log("in server")
-    console.log(req.body)
     const query1 = `UPDATE user_filters SET age='${req.body.age}', level='${req.body.level}' WHERE u_id = '${req.body.u_id}' AND sport = 'basketball' `
     sequelize.query(query1)
 })
+app.delete('/delposts', async (req, res)=> {
+    let day = req.body.obj.day
+    let time = req.body.obj.TIME
+    let query = `DELETE FROM posts WHERE day = '${day}' AND TIME = '${time}'` 
+         await  sequelize.query(query)
+         res.end()
+})
+app.delete('/delgames', async (req, res)=> {
+    console.log(req.body.obj)
+    let post = req.body.obj.post_id
+    let u_id = req.body.obj.u_id
+    let query = `DELETE FROM mygames WHERE post_id = ${post} AND u_id = '${u_id}'` 
+         await  sequelize.query(query)
+         res.end()
+})
+
+
 
 app.listen(PORT, function (err, res) {
-    console.group("the server runs on port " + PORT)
+    console.log("the server runs on port " + PORT)
 })
 
 

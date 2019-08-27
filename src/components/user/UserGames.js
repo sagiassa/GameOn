@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import axios from 'axios'
+import UserGamesPosts from './UserGamesPosts'
 
 class UserGames extends Component{
    constructor(props) {
@@ -7,7 +8,8 @@ class UserGames extends Component{
        this.state = {
            posts : [],
            filters : [],
-           uid : ''
+           uid : '',
+           flag: false
        }
    }
    componentWillMount = async () => {
@@ -24,6 +26,7 @@ renderMyUserFilters = async () => {
     console.log(this.state.filters)
 
   }
+ 
    render(){
        let age = this.state.filters.age
        let sport = this.state.filters.sport
@@ -32,17 +35,8 @@ renderMyUserFilters = async () => {
        return(
            <div>
             {this.state.posts.map(p => p.age === age && p.sport === sport && p.level === level ?
-            <div id = "posts">
-                <div id="eachpost">
-                <span> {p.sport} </span>
-                <span> {p.level} </span> 
-                <span> {p.day} </span> 
-                <span> {p.age} </span> 
-                <span> {p.TIME} </span> 
-                <span> {p.city} </span>
-                <span> {p.court_name} </span>
-                <span> {p.numOfPlayers} </span> </div>
-            </div> : null )}
+            <UserGamesPosts addToDB={this.props.addToDB} post={p} />
+             : null )}
            </div>
        )
    }

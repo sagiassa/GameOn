@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom'
-import { Route, Redirect } from 'react-router'
-
+import {  Redirect } from 'react-router'
+import { Container } from 'semantic-ui-react'
+import { Button, Form, Icon, Message } from 'semantic-ui-react'
 class PopEdit extends Component {
     constructor() {
         super()
         this.state = {
             posts: [],
-            age: "",
-            level: "",
+            age: "11-15",
+            level: "bad",
             city: "",
             flag : false
         }
@@ -57,10 +58,15 @@ class PopEdit extends Component {
     render() {
         let cityNames = this.cityNames()
         return (
-            <div className="pop">
+            <div class="pop">
+            <div class="ui attached message">
+            <   div class="content">
+                <div class="headerP">Welcome to your Profile Edit!</div>
+                <p class="headerp1">Hello, Fill out The Form below to update your Account:</p>
+            </div>
                 <div>
-                    Age:
-            <select className="popEditInput" name="age" value={this.state.age} onChange={this.handelChange}>
+                <div className="inputP">Age:</div>
+            <select className="ui fluid selection dropdown" className="popEditInput" name="age" value={this.state.age} onChange={this.handelChange}>
                         <option value="11-15"> 11 - 15 </option>
                         <option value="15-17"> 15 - 17 </option>
                         <option value="17-20"> 17 - 20 </option>
@@ -70,7 +76,7 @@ class PopEdit extends Component {
                     </select>
                 </div>
                 <div>
-                    Level:
+                  <div className="inputP">Level:</div>
             <select className="popEditInput" name="level" value={this.state.level} onChange={this.handelChange}>
                         <option> bad </option>
                         <option> not that bad </option>
@@ -80,19 +86,57 @@ class PopEdit extends Component {
                     </select>
                 </div>
                 <div>
-                    City:
+                <div className="inputP">City:</div>
             <input className="popEditInput" type='text' list='CitiesNames' name='city' value={this.state.city} onChange={this.handelChange} />
                     <datalist id='CitiesNames'>
                         {cityNames.map(x => <option value={x} />)}
                     </datalist>
                 </div>
                 <div>
-                    <button style={{margin: 200}} onClick={this.editUserFilters}>Edit</button>
+                    {/* <button onClick={this.editUserFilters}>Edit</button> */}<br></br>
+                    <Button class="buti" basic color='red' onClick={this.editUserFilters}> Edit </Button> 
                 </div>
+                
                 {this.state.flag ? this.renderRedirect() : null}
+                </div>
+              
             </div>
-        )
+            )
+        }
     }
-}
-
-export default PopEdit;
+    
+    export default PopEdit;
+    // <div className="pop">
+    //     <div>
+    //         Age:
+    // <select className="popEditInput" name="age" value={this.state.age} onChange={this.handelChange}>
+    //             <option value="11-15"> 11 - 15 </option>
+    //             <option value="15-17"> 15 - 17 </option>
+    //             <option value="17-20"> 17 - 20 </option>
+    //             <option value="20-25"> 20 - 25 </option>
+    //             <option value="25-40"> 25 - 40 </option>
+    //             <option value="40+"> 40 + </option>
+    //         </select>
+    //     </div>
+    //     <div>
+    //         Level:
+    // <select className="popEditInput" name="level" value={this.state.level} onChange={this.handelChange}>
+    //             <option> bad </option>
+    //             <option> not that bad </option>
+    //             <option> good </option>
+    //             <option> very good </option>
+    //             <option> pro </option>
+    //         </select>
+    //     </div>
+    //     <div>
+    //         City:
+    // <input className="popEditInput" type='text' list='CitiesNames' name='city' value={this.state.city} onChange={this.handelChange} />
+    //         <datalist id='CitiesNames'>
+    //             {cityNames.map(x => <option value={x} />)}
+    //         </datalist>
+    //     </div>
+    //     <div>
+    //         <button style={{margin: 200}} onClick={this.editUserFilters}>Edit</button>
+    //     </div>
+    //     {this.state.flag ? this.renderRedirect() : null}
+    // </div>

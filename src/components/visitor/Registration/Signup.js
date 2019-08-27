@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField';
 import fire from '../../../config/Fire'
+import { Route, Redirect } from 'react-router'
 
 class Signup extends Component {
   constructor() {
@@ -14,7 +15,8 @@ class Signup extends Component {
       userName: '',
       password: '',
       uid: '',
-      signedUp: false
+      signedUp: false,
+      flag : false
     }
   }
   handleChange = async (e) => {
@@ -24,9 +26,12 @@ class Signup extends Component {
   dosomthings = async (e) => {
     await this.signup(e)
     await this.addToDB()
-    if (this.state.signedup) {
-      alert('you have successfuly signed up!')
-    }
+    await this.setState({ flag : true })
+    this.renderRedirect()
+    // if (this.state.signedup) {
+    //   alert('you have successfuly signed up!')
+    // }
+
   }
 
   addToDB = async () => {
@@ -60,6 +65,11 @@ class Signup extends Component {
       this.setState({ signedUp: false })
     }
 
+  }
+  renderRedirect = () => {
+    if (this.state.flag) {
+      return <Redirect to='/UserFilters' />
+    }
   }
   render() {
     const styles = { customWidth: { width: 150 } }
